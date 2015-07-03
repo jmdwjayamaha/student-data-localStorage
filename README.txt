@@ -9,9 +9,10 @@ Used Technologies/Frameworks:
  - AngularJS v1.4.1
  - Bootstrap v3.3.5
 
-Tested Platform: 
+Tested Platforms: 
 
- - Microsoft WINDOWS V-7
+ - Chrome 43.0 (Microsoft WINDOWS V-7)
+ - Firefox 38.0 (Microsoft WINDOWS V-7)
 
 Steps to follow in setting integration test.
 
