@@ -20,7 +20,22 @@
 <body>
   
   <div ng-app="studentApp" class="container theme-showcase">
-    <br /><br />
+    <br />
+    <nav class="navbar navbar-default">
+    	<div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Student Data</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#/students">Student</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br />
     <div ng-view>
       <!-- Content loading area -->
     </div>
