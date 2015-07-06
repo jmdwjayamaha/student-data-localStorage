@@ -12,19 +12,19 @@ function AddStudentController($scope, $window, LocalStorageService) {
   
   $scope.student = {studentNumber: '', firstName: '', lastName: '', gender: "MALE", email: '', disability: false};
   $scope.addStudent = function() {
-    LocalStorageService.pushItem($scope.student.studentNumber, angular.toJson($scope.student));
+    LocalStorageService.pushItem("stu_" + $scope.student.studentNumber, angular.toJson($scope.student));
     $window.location.href = "#/students";
   };
 }
 
 function ViewStudentController($scope, $routeParams, LocalStorageService) {
   
-  $scope.student = angular.fromJson(LocalStorageService.getItem($routeParams.id));
+  $scope.student = angular.fromJson(LocalStorageService.getItem("stu_" + $routeParams.id));
 }
 
 function EditStudentController($scope, $routeParams, $window, LocalStorageService) {
   
-  var studentId = $routeParams.id;
+  var studentId = "stu_" + $routeParams.id;
   $scope.student = angular.fromJson(LocalStorageService.getItem(studentId));
   
   $scope.updateStudent = function() {
@@ -33,12 +33,19 @@ function EditStudentController($scope, $routeParams, $window, LocalStorageServic
   };
 }
 
-function ListStudentsController($scope, $route, LocalStorageService) {
+function ListStudentsController($scope, $route, LocalStorageService, ObjTypeFilterService) {
   
-  $scope.studentsList = LocalStorageService.retrieveData();
+  var resultsList = LocalStorageService.retrieveData();
+  $scope.studentsList = [];
+  
+  // Filter the list for students
+  for (var index in resultsList) {
+    var currentItem = resultsList[index];
+    if (ObjTypeFilterService.isStudent(currentItem)) $scope.studentsList.push(currentItem);
+  }
   
   $scope.deleteStudent = function(studentId) {
-    LocalStorageService.removeItem(studentId);
+    LocalStorageService.removeItem("stu_" + studentId);
     $route.reload(); 
   };
 }

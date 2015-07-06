@@ -19,7 +19,7 @@ angular
   
     function getItem(key) {
         return localStorage.getItem(key);
-    };
+    }; 
   
     function retrieveData() {
         var resultsArray = [];
