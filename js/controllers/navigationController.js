@@ -7,7 +7,17 @@ angular
 
 function NavigationController($scope, $location) {
   
-  $scope.currentNav = $location.path().substring(1) || "students";
+  var currentPath = $location.path().substring(1);
+  var seperatorIndex = currentPath.indexOf('/');
+  var currentObjType;
+  
+  if (seperatorIndex > 0) {
+    currentObjType = currentPath.substring(0, seperatorIndex);
+  } else {
+    currentObjType = currentPath.substring(0);
+  }
+  
+  $scope.currentNav =  currentObjType || "students";
   
   $scope.selectStudents = selectStudents;
   $scope.selectSchools = selectSchools;
